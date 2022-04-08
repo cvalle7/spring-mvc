@@ -92,16 +92,6 @@
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.3</version>
         </dependency>
-		<!-- 
-		
-		<dependency>
-            <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc8-production</artifactId>
-            <version>${oracle.jdbc.version}</version>
-            <type>pom</type>
-        </dependency>
-		
-		-->
         
         <!-- C3P0 support -->
         <dependency>
