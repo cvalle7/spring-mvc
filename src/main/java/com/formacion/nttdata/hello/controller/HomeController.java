@@ -12,15 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.formacion.nttdata.hello.model.User;
 import com.formacion.nttdata.hello.servicio.HomeService;
 
-
-
-
 @Controller
 public class HomeController {
 
 	@Autowired
 	HomeService servicio;
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 
 	public String home(Locale locale, Model model) {
@@ -32,21 +29,19 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate);
 
 		return "home";
-
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 
-	public String user(@Validated User user, Model model, Locale locale) {
+	public String user(@Validated User user, Model model, Locale locale) throws Exception {
 
 		System.out.println("User Page Requested");
-		
-		model.addAttribute("userName", user.getUserName());
-		
-		model.addAttribute("newDate", servicio.calculoFecha(locale, user.getAddDate()));
-		
-		return "user";
 
+		model.addAttribute("userName", user.getUserName());
+
+		model.addAttribute("newDate", servicio.calculoFecha(locale, user.getAddDate()));
+
+		return "user";
 	}
 
 }

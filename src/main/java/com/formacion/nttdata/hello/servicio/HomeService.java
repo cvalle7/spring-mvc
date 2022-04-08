@@ -9,37 +9,34 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HomeService {
-	
+
 	public String normalFecha(Locale locale) {
-		
+
 		Date date = new Date();
 
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
-		
+
 		return formattedDate;
-		
 	}
-	
-	public String calculoFecha(Locale locale, int numero) {
-		
+
+	public String calculoFecha(Locale locale, int numero) throws Exception {
+
 		Date date = new Date();
 
 		Calendar c = Calendar.getInstance();
 
 		c.setTime(date);
-		
-		c.add(Calendar.DATE, numero);
-		
-		Date fecha = c.getTime();
-		
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(fecha);
-		
-		return formattedDate;
-		
-	}
 
+		c.add(Calendar.DATE, numero);
+
+		Date fecha = c.getTime();
+
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(fecha);
+
+		return formattedDate;
+	}
 }
