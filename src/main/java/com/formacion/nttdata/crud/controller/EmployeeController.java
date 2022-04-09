@@ -1,5 +1,8 @@
 package com.formacion.nttdata.crud.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +16,10 @@ import com.formacion.nttdata.crud.servicio.CrudService;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-	
+
 	@Autowired
 	CrudService service;
-	
+
 	@Autowired
 	EmployeeMapper employeeMapper;
 	private static final String EMPLOYEE = "Employee";
@@ -35,14 +38,22 @@ public class EmployeeController {
 	}
 
 	@RequestMapping("/saveProcess")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-		service.setFechaActual(employee);
-		if (employee.getId() == null) {
-			employeeMapper.saveEmployee(employee);
-		} else {
-			employeeMapper.updateEmployee(employee);
+	public String saveEmployee(@ModelAttribute("employee") Employee employee, Model model) {
+
+		Optional<List<String>> listaErrores = service.validEmployee(employee);
+
+		if (!listaErrores.isPresent()) {
+			if (employee.getId() == null) {
+				employeeMapper.saveEmployee(employee);
+			} else {
+				employeeMapper.updateEmployee(employee);
+			}
+			return "redirect:/employee/listOfEmployee";
 		}
-		return "redirect:/employee/listOfEmployee";
+
+		model.addAttribute("errores", listaErrores.get());
+		
+		return EMPLOYEE;
 	}
 
 	@RequestMapping("/displayUpdateForm")

@@ -14,6 +14,13 @@
 	<div class="container">
 		<h1>Employee Details</h1>
 		<hr />
+
+		<c:if test="${not empty errores}">
+			<c:forEach var="error" items="${errores}">
+				<div class="alert alert-danger" role="alert">${error}</div>
+			</c:forEach>
+		</c:if>
+
 		<s:form action="saveProcess" modelAttribute="employee">
 			<s:hidden path="id" />
 			<s:hidden path="" value="${employee.hobbies}" id="hobbies" />
@@ -60,8 +67,9 @@
 			</div>
 			<div class="form-group">
 				<s:select path="country" class="form-control">
-					<s:option value="0">--Select--</s:option>
+					<s:option value="">--Select--</s:option>
 					<s:option value="India">India</s:option>
+					<s:option value="Spain">Spain</s:option>
 					<s:option value="Australia">Australia</s:option>
 					<s:option value="Japan">Japan</s:option>
 					<s:option value="America">America</s:option>
@@ -74,7 +82,7 @@
 					class="form-control" />
 			</div>
 			<input type="submit" value="Save" class="btn btn-info" />&nbsp; 
-<input type="reset" value="Reset" class="btn btn-danger" />
+			<input type="reset" value="Reset" class="btn btn-danger" />
 		</s:form>
 		<hr />
 		<a href="listOfEmployee">Back to List</a>

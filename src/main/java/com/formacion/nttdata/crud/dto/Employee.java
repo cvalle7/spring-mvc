@@ -2,15 +2,31 @@ package com.formacion.nttdata.crud.dto;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class Employee {
 	
 	private Integer id;
+	
+	@NotBlank
 	private String fullname;
+	
+	@NotBlank
 	private String email;
+	
+	@NotNull
 	private String gender;
+	
+	@NotNull 
 	private String hobbies;
+	
+	@NotBlank
 	private String country;
+	
+	@NotBlank
 	private String address;
+	
 	private Date date;
 
 	public Integer getId() {

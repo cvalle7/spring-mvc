@@ -11,6 +11,7 @@
         <result property="gender" column="gender" />
         <result property="hobbies" column="hobbies" />
         <result property="country" column="country" />
+        <result property="date" column="fecha" />
         <result property="address" column="address" />
     </resultMap>
     
